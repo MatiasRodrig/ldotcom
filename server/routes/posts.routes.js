@@ -1,26 +1,17 @@
 import { Router } from "express";
+import * as postContrllers from "./controllers/posts.controllers.js"
 
 const router = Router()
 
+router.post('/', postContrllers.crearPost)
 
-router.get('/posts', (req, res) => {
-res.send([])
-})
+router.get('/', postContrllers.obtenerPosts)
 
-router.post('/posts', (req, res) => {
-    res.send('Post creado')
-})
+router.get('/:id', postContrllers.obtenerPostPorId)
 
-router.delete('/posts', (req, res) => {
-    res.send('Post borrado')
-})
+router.delete('/:id', postContrllers.eliminarPostPorId)
 
-router.put('/posts', (req, res) => {
-    res.send('Post actualizado')
-})
+router.put('/:id', postContrllers.actualizarPostPorId)
 
-router.get('/posts:id', (req, res) => {
-    res.send('Post consultado')
-})
 
 export default router;
