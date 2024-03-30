@@ -1,4 +1,4 @@
-import Posts from './models/post.model.js'
+import Posts from '../models/post.model.js'
 
 export const crearPost = async (req, res) => {
 
@@ -8,7 +8,7 @@ export const crearPost = async (req, res) => {
 
     const savedPost = await newPost.save()
 
-    res.status(201).send(savedPost)
+    res.status(201).json(savedPost)
 }
 
 export const obtenerPosts = (req, res) => {

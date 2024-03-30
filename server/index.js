@@ -1,24 +1,31 @@
-import express from "express"
-import  postsRoutes  from "./routes/posts.routes.js"
-import authRoutes from './routes/auth.routes.js'
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from 'dotenv';
+import postsRoutes from "./routes/posts.routes.js";
+import authRoutes from './routes/auth.routes.js';
 
+dotenv.config();
 
-
-const app = express()
-app.use(express.json())
-
-
-
+const app = express();
+app.use(express.json());
 
 // Routes
+app.use('/posts', postsRoutes);
+app.use(authRoutes);
 
 app.use('/', (req, res) => {
-    res.send('Inicio')
-})
-app.use('/posts', postsRoutes)
-app.use(authRoutes)
+    res.send('Hello World!');
+});
 
-
-app.listen(3000, () => {
-    console.log('App funcionando en puerto 3000!')
+mongoose.connect(process.env.MONGO_URI, {
 })
+    .then(() => {
+        console.log('Conectado a la base de datos');
+        const port = process.env.PORT || 3000;
+        app.listen(port, () => {
+            console.log(`App funcionando en puerto ${port}!`);
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    })
