@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import postsRoutes from "./routes/posts.routes.js";
 import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js'
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 // Routes
 app.use('/posts', postsRoutes);
 app.use(authRoutes);
-
+app.use('/users', userRoutes);
 app.use('/', (req, res) => {
     res.send('Hello World!');
 });
