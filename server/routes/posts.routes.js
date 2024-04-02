@@ -1,5 +1,7 @@
 import { Router } from "express";
 import * as postContrllers from "../controllers/posts.controllers.js"
+import schemaPost  from "../schemas/posts.schema.js"
+import schemaValidator from "../middlewares/schemaValidator.middleware.js"
 
 const router = Router()
 

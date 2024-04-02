@@ -1,12 +1,14 @@
 import { Router } from "express";
 import * as userController from "../controllers/user.controller.js"
+import { schemaRegister } from "../schemas/auth.schema.js"
+import  schemaValidator  from "../middlewares/schemaValidator.middleware.js"
 
 
 
 const router = Router()
 
 
-router.post('/', userController.crearUser)
+router.post('/', schemaValidator(schemaRegister), userController.crearUser)
 
 router.get("/", userController.obtenerUsers)
 

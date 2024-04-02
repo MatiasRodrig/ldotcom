@@ -1,9 +1,10 @@
 import { z } from 'zod'
 
 
-export const schemaPost = z.object(
-    title = z.string().min(5),
-    content = z.string().min(5),
-    author = z.string().min(5)
+const schemaPost = z.object({
+    content: z.string().min(5),
+    title: z.string().min(5),
+}
 )
 
+export default schemaPost

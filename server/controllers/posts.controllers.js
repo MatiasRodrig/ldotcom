@@ -1,7 +1,7 @@
 import Post from '../models/post.model.js'
 
 export const crearPost = async (req, res) => {
-
+  
     const { nombre, contenido, imageUrl } = req.body
 
     const newPost = new Post({ nombre, contenido, imageUrl })

@@ -1,10 +1,14 @@
 import Users from '../models/user.model.js'
-import { schemaRegister } from "../schemas/auth.schema.js";
 
 
 export const crearUser = async (req, res) => {
 
     const { usuario, contrasenia, email } = req.body
+
+    const userExists = await Users.findOne({ usuario });
+    if (userExists) {
+        return res.status(400).json({ message: 'El usuario ya existe' });
+    } 
 
     const newUser = new Users({ usuario, contrasenia, email })
 
@@ -18,9 +22,11 @@ export const obtenerUsers = async (req, res) => {
     const users = await Users.find()
 
     res.status(200).json(users)
-        .catch((err) => {
-            res.status(500).json(err)
-        })
+        
+    if (!users) {
+        res.status(500).json('No hay usuarios') 
+    }	
+        
 }
 
 
@@ -28,9 +34,10 @@ export const obtenerUserPorId = async (req, res) => {
     const user = await Users.findById(req.params.id)
 
     res.status(200).json(user)
-        .catch(() => {
-            res.status(404).json({ message: 'User no encontrado' })
-        })
+        
+    if (!user) {
+            res.status(404).json({ message: 'Usuario no encontrado' })
+        }
 }
 
 
@@ -58,5 +65,5 @@ export const eliminarUserPorId = async (req, res) => {
     } else {
         res.status(404).json({ message: 'User no encontrado' })
     }
-}
+};
 
