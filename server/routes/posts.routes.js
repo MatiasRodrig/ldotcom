@@ -7,11 +7,11 @@ router.post('/', postContrllers.crearPost)
 
 router.get('/', postContrllers.obtenerPosts)
 
-router.get('/:id', postContrllers.obtenerPostPorId)
+router.get('/:_id', postContrllers.obtenerPostPorId)
 
-router.delete('/:id', postContrllers.eliminarPostPorId)
+router.delete('/:_id', postContrllers.eliminarPostPorId)
 
-router.put('/:id', postContrllers.actualizarPostPorId)
+router.put('/:_id', postContrllers.actualizarPostPorId)
 
 
 export default router;

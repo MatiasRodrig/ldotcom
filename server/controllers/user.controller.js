@@ -1,4 +1,5 @@
 import Users from '../models/user.model.js'
+import { schemaRegister } from "../schemas/auth.schema.js";
 
 
 export const crearUser = async (req, res) => {
@@ -13,22 +14,49 @@ export const crearUser = async (req, res) => {
 }
 
 
-export const obtenerUsers = (req, res) => {
-    res.send('Users')
+export const obtenerUsers = async (req, res) => {
+    const users = await Users.find()
+
+    res.status(200).json(users)
+        .catch((err) => {
+            res.status(500).json(err)
+        })
 }
 
 
-export const obtenerUserPorId = (req, res) => {
-    res.send('Users')
+export const obtenerUserPorId = async (req, res) => {
+    const user = await Users.findById(req.params.id)
+
+    res.status(200).json(user)
+        .catch(() => {
+            res.status(404).json({ message: 'User no encontrado' })
+        })
 }
 
 
-export const actualizarUserPorId = (req, res) => {
-    res.send('Users actualizado')
+export const actualizarUserPorId = async (req, res) => {
+    const user = await Users.findById(req.params.id)
+    
+    if (user) {
+        const { usuario, contrasenia, email } = req.body
+        user.usuario = usuario
+        user.contrasenia = contrasenia
+        user.email = email
+        const updatedUser = await user.save()
+        res.status(200).json(updatedUser)
+    } else {
+        res.status(404).json({ message: 'User no encontrado' })
+    }
 }
 
 
-export const eliminarUserPorId = (req, res) => {
-    res.send('Users eliminado')
+export const eliminarUserPorId = async (req, res) => {
+    const user = await Users.findById(req.params.id)
+    if (user) {
+        await user.deleteOne()
+        res.status(200).json({ message: 'User eliminado' })
+    } else {
+        res.status(404).json({ message: 'User no encontrado' })
+    }
 }
 
