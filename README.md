@@ -56,6 +56,7 @@ If you'd like to contribute to the project, please open an issue to discuss the 
 
 This project is licensed under the [MIT License](LICENSE).
 
+---
 
 
 # [Español]
