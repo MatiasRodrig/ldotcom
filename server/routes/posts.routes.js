@@ -5,7 +5,7 @@ import schemaValidator from "../middlewares/schemaValidator.middleware.js"
 
 const router = Router()
 
-router.post('/', postContrllers.crearPost)
+router.post('/', schemaValidator(schemaPost), postContrllers.crearPost)
 
 router.get('/', postContrllers.obtenerPosts)
 
