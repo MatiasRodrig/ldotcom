@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as postContrllers from "../controllers/posts.controllers.js"
+import * as postContrllers from "../controllers/posts.controller.js"
 import schemaPost  from "../schemas/posts.schema.js"
 import schemaValidator from "../middlewares/schemaValidator.middleware.js"
 

@@ -7,7 +7,5 @@ export const schemaRegister = z.object({
 }
 )
 
-export const schemaLogin = z.object(
-  
-)
+
 
