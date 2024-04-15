@@ -6,9 +6,7 @@ const router = Router()
 
 router.post('/registro', authController.registro)
 
-router.post('/login', (req, res) => {
-    res.send('<h1>Login</h1>')
-})
+router.post('/login', authController.logueo)
 
 
 export default router;

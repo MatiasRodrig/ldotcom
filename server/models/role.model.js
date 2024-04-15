@@ -1,11 +1,14 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const roleSchema = new Schema({
-    nombre: String
-},{
-    timestamps: true,
-    versionKey: false
-})
+export const ROLES = ["user", "admin", "moderator"];
 
+const roleSchema = new mongoose.Schema(
+    {
+        nombre: String,
+    },
+    {
+        versionKey: false,
+    }
+);
 
-export default model('Role', roleSchema)
+export default mongoose.model("Role", roleSchema);
